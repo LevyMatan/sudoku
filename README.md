@@ -23,5 +23,7 @@ e. classify each cell to one of the digits from 1 to 9 or empty cell
 3) Android app interface:
 An app the will warp the first two parts
 
+4) fuck off!!
+
 
 Good Luck!!!
