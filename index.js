@@ -28,7 +28,7 @@ function checkElementsInRow(cell_idx, cell_value) {
             setRedCell(cell_id);
             return cell_id;
         }
-        
+
     }
     return -1;
 }
@@ -44,7 +44,7 @@ function checkElementsInCol(cell_idx, cell_value) {
             setRedCell(cell_id);
             return cell_id;
         }
-        
+
     }
     return -1;
 }
@@ -75,7 +75,7 @@ function checkElementsInBox(cell_idx, cell_value) {
 function checkForAWin(){
     for (let index = 0; index < 81; index++) {
         const element = document.getElementById("cell-"+index);
-        if (element.value === null) {
+        if (element.value === "") {
             return false;
         }
     }
@@ -87,10 +87,16 @@ function boardParty(){
         for (let index = 0; index < 81; index++) {
             const element = document.getElementById("cell-"+index);
             const randomColor = Math.floor(Math.random()*16777215).toString(16);
-            element.style.backgroundColor = "#" + randomColor;    
+            element.style.backgroundColor = "#" + randomColor;
         }
     }, 500);
 }
+
+/**
+ *
+ * @param {*} e : Input event
+ * @returns
+ */
 function updateValue(e) {
     clearRedCell();
     let input_value = e.target.value;
@@ -107,7 +113,7 @@ function updateValue(e) {
             e.target.value = '';
             return;
         }
-        
+
         let col = checkElementsInCol(cell_idx, input_value);
         if(col > 0){
             e.target.value = '';
@@ -132,12 +138,12 @@ function setRedCell(idx) {
 
 function clearRedCell() {
     if (red_cell != -1) {
-        
+
         const cell = document.getElementById("cell-" + red_cell)
-        cell.style.backgroundColor = 'rgb(255, 255, 255)';  
+        cell.style.backgroundColor = 'rgb(255, 255, 255)';
         if (cell.disabled == true) {
-            cell.style.backgroundColor = 'rgb(190, 187, 187)'; 
-        }        
+            cell.style.backgroundColor = 'rgb(190, 187, 187)';
+        }
     }
 }
 
@@ -145,31 +151,31 @@ function clearRedCell() {
 function highlightRow(row_id) {
     const row = document.getElementsByClassName("row-" + row_id);
     for (let index = 0; index < 9; index++) {
-        row[index].style.backgroundColor = 'rgb(159, 235, 239)';               
+        row[index].style.backgroundColor = 'rgb(159, 235, 239)';
     }
 }
 function clearRowColor(row_id) {
     const row = document.getElementsByClassName("row-" + row_id);
     for (let index = 0; index < 9; index++) {
-        row[index].style.backgroundColor = 'rgb(255, 255, 255)'; 
+        row[index].style.backgroundColor = 'rgb(255, 255, 255)';
         if (row[index].disabled == true) {
-            row[index].style.backgroundColor = 'rgb(190, 187, 187)'; 
-        }              
+            row[index].style.backgroundColor = 'rgb(190, 187, 187)';
+        }
     }
 }
 function highlightCol(col_id) {
     const row = document.getElementsByClassName("col-" + col_id);
     for (let index = 0; index < 9; index++) {
-        row[index].style.backgroundColor = 'rgb(159, 235, 239)';               
+        row[index].style.backgroundColor = 'rgb(159, 235, 239)';
     }
 }
 function clearColColor(col_id) {
     const col = document.getElementsByClassName("col-" + col_id);
     for (let index = 0; index < 9; index++) {
-        col[index].style.backgroundColor = 'rgb(255, 255, 255)';  
+        col[index].style.backgroundColor = 'rgb(255, 255, 255)';
         if (col[index].disabled == true) {
-            col[index].style.backgroundColor = 'rgb(190, 187, 187)'; 
-        }              
+            col[index].style.backgroundColor = 'rgb(190, 187, 187)';
+        }
     }
 }
 
@@ -217,17 +223,17 @@ function highlightValue(val)
                 // cell.style.fontColor = 'darkgreen';
                 cell.style.backgroundColor = 'rgb(255, 255, 255)';
                 if (cell.disabled == true) {
-                    cell.style.backgroundColor = 'rgb(190, 187, 187)'; 
-                } 
-                
-            } 
+                    cell.style.backgroundColor = 'rgb(190, 187, 187)';
+                }
+
+            }
                 if(Number(cell.value) == Number(val)){
                     // alert("found " + val + " at index " + index);
                     // cell.style.backgroundColor = "red";
                     cell.style.fontWeight = 'bold';
                     // cell.style.fontColor = 'darkgreen';
                     cell.style.backgroundColor = 'darkgreen';
-                } 
+                }
         }
         highlighted_val = val;
     }
@@ -237,11 +243,4 @@ function onclick(event) {
     clearRedCell();
     // toggleHighlight(curr_cell_idx);
     highlightValue(event.target.value.match(/[0-9]/));
-}
-
-function onmousedown(event) {
-}
-
-
-function onmouseup(event) {
 }
