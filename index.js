@@ -3,7 +3,7 @@ addEventListener('input', (event) => updateValue(event));
 addEventListener('click', (event) => onclick(event));
 // addEventListener('mousedown', (event) => onmousedown(event));
 // addEventListener('mouseup', (event) => onmouseup(event));
-
+// setTimeout(() => boardParty(), 10000);
 var red_cell = -1;
 var highlighted_cell;
 var high_lighted = false;
@@ -34,7 +34,6 @@ function checkElementsInRow(cell_idx, cell_value) {
 }
 function checkElementsInCol(cell_idx, cell_value) {
     let col = cell_idx % 9;
-    // document.getElementById("log").innerHTML = col
     for (let index = 0; index < 9; index++) {
         const cell_id = (index * 9) + col;
         if (cell_id == cell_idx) {
@@ -73,9 +72,26 @@ function checkElementsInBox(cell_idx, cell_value) {
     return -1;
 }
 
+function checkForAWin(){
+    for (let index = 0; index < 81; index++) {
+        const element = document.getElementById("cell-"+index);
+        if (element.value === null) {
+            return false;
+        }
+    }
+    return true;
+}
 
+function boardParty(){
+    setInterval(() => {
+        for (let index = 0; index < 81; index++) {
+            const element = document.getElementById("cell-"+index);
+            const randomColor = Math.floor(Math.random()*16777215).toString(16);
+            element.style.backgroundColor = "#" + randomColor;    
+        }
+    }, 500);
+}
 function updateValue(e) {
-    // document.getElementById('values').innerHTML = "Hello from event!";
     clearRedCell();
     let input_value = e.target.value;
     let cell_idx = e.target.id.match(/[0-9]+/);
@@ -86,7 +102,6 @@ function updateValue(e) {
     }
     else
     {
-        document.getElementById('values3').innerHTML = "Cell of ID: " + cell_idx;
         let row = checkElementsInRow(cell_idx, input_value);
         if(row > 0){
             e.target.value = '';
@@ -102,6 +117,10 @@ function updateValue(e) {
         if(box > 0){
             e.target.value = '';
             return;
+        }
+        highlightValue(input_value);
+        if(checkForAWin() == true){
+            boardParty();
         }
     }
 }
@@ -188,35 +207,35 @@ function toggleHighlight(cell_idx){
 
 function highlightValue(val)
 {
-    for (let index = 0; index < 81; index++) {
-        let cell = document.getElementById('cell-'+ index);
-        if(Number(cell.value) == Number(highlighted_val)){
-            // alert("found " + val + " at index " + index);
-            // cell.style.backgroundColor = "red";
-            cell.style.fontWeight = 'normal';
-            // cell.style.fontColor = 'darkgreen';
-            cell.style.backgroundColor = 'rgb(255, 255, 255)';
-            if (cell.disabled == true) {
-                cell.style.backgroundColor = 'rgb(190, 187, 187)'; 
-            } 
-            
-        } 
-        if(val !== null){
-            if(Number(cell.value) == Number(val)){
+    if(val !== null){
+        for (let index = 0; index < 81; index++) {
+            let cell = document.getElementById('cell-'+ index);
+            if(Number(cell.value) == Number(highlighted_val)){
                 // alert("found " + val + " at index " + index);
                 // cell.style.backgroundColor = "red";
-                cell.style.fontWeight = 'bold';
+                cell.style.fontWeight = 'normal';
                 // cell.style.fontColor = 'darkgreen';
-                cell.style.backgroundColor = 'darkgreen';
+                cell.style.backgroundColor = 'rgb(255, 255, 255)';
+                if (cell.disabled == true) {
+                    cell.style.backgroundColor = 'rgb(190, 187, 187)'; 
+                } 
+                
             } 
+                if(Number(cell.value) == Number(val)){
+                    // alert("found " + val + " at index " + index);
+                    // cell.style.backgroundColor = "red";
+                    cell.style.fontWeight = 'bold';
+                    // cell.style.fontColor = 'darkgreen';
+                    cell.style.backgroundColor = 'darkgreen';
+                } 
         }
+        highlighted_val = val;
     }
-    highlighted_val = val;
 }
 function onclick(event) {
     let curr_cell_idx = event.target.id.match(/[0-9]+/);
     clearRedCell();
-    toggleHighlight(curr_cell_idx);
+    // toggleHighlight(curr_cell_idx);
     highlightValue(event.target.value.match(/[0-9]/));
 }
 
