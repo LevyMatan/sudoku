@@ -5,6 +5,7 @@ This project will be devided to three main parts:
 - Photo to Board
 - Web App
 
+[Click here](https://levymatan.github.io/sudoku/) to play on the very first board I created :)
 ## Sudoku solver
 
 The solver will get an initilized board, and will output the missing numbers that solves the sudoku.
