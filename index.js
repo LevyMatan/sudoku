@@ -1,11 +1,13 @@
 
 addEventListener('input', (event) => updateValue(event));
 addEventListener('click', (event) => onclick(event));
-addEventListener('mousedown', (event) => onmousedown(event));
-addEventListener('mouseup', (event) => onmouseup(event));
+// addEventListener('mousedown', (event) => onmousedown(event));
+// addEventListener('mouseup', (event) => onmouseup(event));
 
 var red_cell = -1;
-var hignlighted_cell;
+var highlighted_cell;
+var high_lighted = false;
+var highlighted_val;
 function checkValidCellInput(input) {
     var regex=/[1-9]/;
     if (input == input.match(regex))
@@ -113,14 +115,10 @@ function clearRedCell() {
     if (red_cell != -1) {
         
         const cell = document.getElementById("cell-" + red_cell)
+        cell.style.backgroundColor = 'rgb(255, 255, 255)';  
         if (cell.disabled == true) {
-            cell.style.backgroundColor = 'rgb(238, 238, 238)';
-        }
-        else {
-            cell.style.backgroundColor = 'rgb(255, 255, 255)';  
-            document.getElementById('log').innerHTML = "cell is disabled";
-        }
-        
+            cell.style.backgroundColor = 'rgb(190, 187, 187)'; 
+        }        
     }
 }
 
@@ -134,12 +132,10 @@ function highlightRow(row_id) {
 function clearRowColor(row_id) {
     const row = document.getElementsByClassName("row-" + row_id);
     for (let index = 0; index < 9; index++) {
-        if(row[index].disabled == true){
-            row[index].style.backgroundColor = 'rgb(238, 238, 238)';               
-        }
-        else{
-            row[index].style.backgroundColor = 'rgb(255, 255, 255)';               
-        }
+        row[index].style.backgroundColor = 'rgb(255, 255, 255)'; 
+        if (row[index].disabled == true) {
+            row[index].style.backgroundColor = 'rgb(190, 187, 187)'; 
+        }              
     }
 }
 function highlightCol(col_id) {
@@ -149,14 +145,12 @@ function highlightCol(col_id) {
     }
 }
 function clearColColor(col_id) {
-    const row = document.getElementsByClassName("col-" + col_id);
+    const col = document.getElementsByClassName("col-" + col_id);
     for (let index = 0; index < 9; index++) {
-        if(row[index].disabled == true){
-            row[index].style.backgroundColor = 'rgb(238, 238, 238)';               
-        }
-        else{
-            row[index].style.backgroundColor = 'rgb(255, 255, 255)';               
-        }
+        col[index].style.backgroundColor = 'rgb(255, 255, 255)';  
+        if (col[index].disabled == true) {
+            col[index].style.backgroundColor = 'rgb(190, 187, 187)'; 
+        }              
     }
 }
 
@@ -174,17 +168,61 @@ function clearRowAndCol(cell_id) {
     clearColColor(col_id);
 }
 
+function toggleHighlight(cell_idx){
+    if(high_lighted == true){
+        clearRowAndCol(highlighted_cell);
+        high_lighted = false;
+        if(Number(cell_idx) != Number(highlighted_cell)){
+            highlighted_cell = cell_idx;
+            colorRowAndCol(highlighted_cell);
+            high_lighted = true;
+        }
+    }
+    else{
+        highlighted_cell = cell_idx;
+        colorRowAndCol(highlighted_cell);
+        high_lighted = true;
+    }
 
+}
+
+function highlightValue(val)
+{
+    for (let index = 0; index < 81; index++) {
+        let cell = document.getElementById('cell-'+ index);
+        if(Number(cell.value) == Number(highlighted_val)){
+            // alert("found " + val + " at index " + index);
+            // cell.style.backgroundColor = "red";
+            cell.style.fontWeight = 'normal';
+            // cell.style.fontColor = 'darkgreen';
+            cell.style.backgroundColor = 'rgb(255, 255, 255)';
+            if (cell.disabled == true) {
+                cell.style.backgroundColor = 'rgb(190, 187, 187)'; 
+            } 
+            
+        } 
+        if(val !== null){
+            if(Number(cell.value) == Number(val)){
+                // alert("found " + val + " at index " + index);
+                // cell.style.backgroundColor = "red";
+                cell.style.fontWeight = 'bold';
+                // cell.style.fontColor = 'darkgreen';
+                cell.style.backgroundColor = 'darkgreen';
+            } 
+        }
+    }
+    highlighted_val = val;
+}
 function onclick(event) {
+    let curr_cell_idx = event.target.id.match(/[0-9]+/);
     clearRedCell();
+    toggleHighlight(curr_cell_idx);
+    highlightValue(event.target.value.match(/[0-9]/));
 }
 
 function onmousedown(event) {
-    hignlighted_cell = event.target.id.match(/[0-9]+/);
-    colorRowAndCol(event.target.id.match(/[0-9]+/));
 }
 
 
 function onmouseup(event) {
-    clearRowAndCol(hignlighted_cell);
 }
