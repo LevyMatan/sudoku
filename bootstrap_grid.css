@@ -10,6 +10,8 @@ h1 {
 
 .container {
     border: 4px solid #000000;
+    padding-right: 2px;
+    padding-left: 2px;
 }
 
 .row {
@@ -50,4 +52,3 @@ h1 {
 .col--2, .col--5, .col--8{
     border-right: 2px solid #000000;
 }
-
