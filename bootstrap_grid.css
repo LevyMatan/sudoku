@@ -52,3 +52,10 @@ h1 {
 .col--2, .col--5, .col--8{
     border-right: 2px solid #000000;
 }
+
+* {
+    margin: 0;
+}
+
+#numbers-bar, .push {
+    height: 68px;
