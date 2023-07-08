@@ -1,0 +1,140 @@
+body {
+    font-family: sans-serif;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    background-color: black;
+  }
+
+h1 {
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Impact, serif;
+    text-align: center;
+}
+
+.developer {
+    font-style: italic;
+    font-size: x-small;
+    margin: 0;
+
+}
+
+.webapp {
+    background-color: burlywood;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 98%;
+    height: 100vh;
+    min-width: 200px;
+    max-width: 100vw;
+}
+
+header {
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0;
+    background-color: #0a0a23;
+    color: #fff;
+    border-bottom: 4px solid #fdb347;
+    margin: 0;
+    width: 100%;
+}
+
+main {
+    height: 90vh;
+}
+
+#sudoku-grid {
+    min-height: 90px;
+    min-width: 90px;
+    width: auto;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row nowrap;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 20px;
+    min-width: 80%;
+    width: 100%;
+    height: 11%;
+    padding: 0;
+}
+
+.row p {
+    min-width: 20px;
+    border: 1px dashed #0a0a23;
+    margin: 0;
+    background-color: #db9730;
+    width: 11%;
+    height: auto;
+}
+.col {
+    min-height: 100%;
+    width: auto;
+    background-color: rgb(246, 221, 213);
+    border: 1px dashed black;
+    text-align: center;
+}
+.cell:hover {
+    background-color: rgb(193, 147, 132);
+}
+
+hr {
+    height: 2px;
+    background-color: brown;
+    border-color: brown;
+}
+
+#sudoku-buttons {
+    height: 15vh;
+}
+#numbers-bar {
+    height: 15vh;
+}
+
+#numbers-bar .row {
+    height: 100%;
+}
+
+#numbers-bar .row .col{
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+    width: 11%;
+}
+/* FOOTER */
+
+footer {
+    font-size: 14px;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+    text-align: center;
+}
+
+a {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: brown;
+}
+
+a:active {
+    color: brown;
+}
