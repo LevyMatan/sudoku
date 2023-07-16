@@ -1,32 +1,43 @@
-# Sudoku
+# Sudoku Web App
 
-This project will be devided to three main parts:
+This is a simple Sudoku web app that can be played on both PCs and mobile devices. The app has two features:
 
-- Sudoku Solver
-- Photo to Board
-- Web App
+* Start a new game: This feature allows users to choose the difficulty level of the game.
+* Scan an existing board: This feature allows users to scan a Sudoku board with their phone's camera and then have the app solve the puzzle for them.
 
-[Click here](https://levymatan.github.io/sudoku/) to play on the very first board I created :)
+The app also has a timer to track how long it takes users to solve a puzzle, and a tutorial to teach users how to play Sudoku.
 
-## Sudoku solver
+## Getting Started
 
-The solver will get an initilized board, and will output the missing numbers that solves the sudoku.
-It also will check if the current board is valid (apply to all rules of the game)
+To run the app, you will need to have Python installed. Once you have Python installed, you can clone the GitHub repository and run the following command:
 
-## Photo to Board
+`python app.py`
 
-The board reader takes as a input a photo of a sudoku board and output a digital version.
-It should be able to tackle both hand written numbers and printed numbers.
-A huerstic idea on basic steps:
+The app will then be hosted on your local machine. You can access the app by opening a web browser and navigating to `localhost:5000`.
 
-1. preprocess the input image: gray scale and white balance
-2. find the board
-3. apply homographic transform (straighten the board)
-4. split board to cells, and assgin index
-5. classify each cell to one of the digits from 1 to 9 or empty cells
+## Features
 
-## Web App
+* Start a new game: This feature allows users to choose the difficulty level of the game. The difficulty levels are easy, medium, hard, and expert.
+* Scan an existing board: This feature allows users to scan a Sudoku board with their phone's camera and then have the app solve the puzzle for them.
+* Timer: This feature tracks how long it takes users to solve a puzzle.
+* Tutorial: This feature teaches users how to play Sudoku.
 
-An app the will warp the first two parts
+## Requirements
 
-Good Luck!!!
+* Python 3.6 or later
+* Flask
+* Pillow
+
+## To-Do
+
+* Add a leaderboard to track users' progress and compare their scores to others.
+* Add a hint system to help users solve difficult puzzles.
+* Add a tutorial to teach users how to play Sudoku.
+
+## Contributing
+
+Contributions are welcome! Please open a pull request on the GitHub repository if you have any changes or improvements.
+
+## License
+
+The app is licensed under the MIT License.
